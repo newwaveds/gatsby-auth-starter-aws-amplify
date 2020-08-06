@@ -4,16 +4,28 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
-exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage } = actions
+const path = require('path')
 
-  // page.matchPath is a special key that's used for matching pages
-  // only on the client.
-  if (page.path.match(/^\/app/)) {
-    page.matchPath = `/app/*`
+exports.createPages = ({ graphql, actions}) => {
+	const {createPage} = actions
+	const blogPostTemplate = path.resolve('src/templates/blog-post.js')
+	return graphql('
+		query PostsQuery {
+			wordPress {
+				posts {
+					nodes {
+						title
+						id
+						slug
+						uri
+						elementorData
+					}
+				}
+			}
+		}
 
-    // Update the page.
-    createPage(page)
-  }
+
+		', { limit: 1000}).then(result => {
+
+		})
 }
