@@ -8,23 +8,17 @@ const path = require(`path`)
 
 exports.createPages = ({ graphql, actions}) => {
 	const { createPage } = actions
-	const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
+	const blogPostTemplate = path.resolve(`src/templates/radio-event.js`)
 	return graphql(`
 		query PostsQuery {
 			wordPress {
-				posts {
-					nodes {
-						title
-						id
-						slug
-						uri
-						elementorData
-					}
-				}
+				radios {
+				    nodes {
+				      title
+				    }
+				  }
 			}
 		}
-
-
 		`, { limit: 1000}).then(result => {
 			if (result.errors){
 				throw result.errors
