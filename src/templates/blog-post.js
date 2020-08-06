@@ -8,6 +8,7 @@ Amplify.configure(config)
 
 const blogPostTemplate = () => (
   <Layout>
+  	<SEO title="Home" />
     <h1>test post</h1>
   </Layout>
 )
