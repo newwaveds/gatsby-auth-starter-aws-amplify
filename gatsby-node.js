@@ -8,8 +8,7 @@ const path = require(`path`)
 
 exports.createPages = ({ graphql, actions}) => {
 	const { createPage } = actions
-	const blogPostTemplate = path.resolve
-	(`src/templates/blog-post.js`)
+	const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
 	return graphql(`
 		query PostsQuery {
 			wordPress {
